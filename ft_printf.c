@@ -6,35 +6,56 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:59:15 by dfontech          #+#    #+#             */
-/*   Updated: 2024/01/26 15:30:37 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:14:27 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	ft_format(va_list va, char *cadena, size_t *counter)
+{
+	if( *cadena == 'c')
+		ft_putchar_pf(va_arg(va, int), counter);
+	else if (*cadena == 's')
+		ft_putstr_pf(va_arg(va, char *), counter);
+	else if (*cadena == 'p')
+		ft_putptr_pf(va_arg(va, void *), counter);
+	else if (*cadena == 'i' || *cadena == 'd')
+		ft_putnbr_pf(va_arg(va, int), counter);
+	else if (*cadena == 'u')
+		ft_putuint_pf(va_arg(va, unsigned int), counter);
+	else if (*cadena == 'x' || *cadena == 'X')
+	{
+		if (*cadena == 'x')
+			ft_puthex_pf(va_arg(va, unsigned int), counter, HEX_LOW_BASE);
+		else
+			ft_puthex_pf(va_arg(va, unsigned int), counter, HEX_UPP_BASE); 
+	}
+	else if (*cadena == '%')
+		ft_putchar_pf(*cadena, counter);
+}
+
 int	ft_printf(char const *cadena, ...)
 {
-	va_list args;
-	int i; //puntero
-	int j; //string
+	va_list va;
+	size_t	counter;
 	
-	i = 0;
-	j = 0;
-	va_start(args, cadena); //cadena es el argumento dónde inicia la lista de argumentos
-	while(cadena[i])
+	if(!cadena)
+		return(NULL);
+	counter = 0;
+	va_start(va, cadena);
+	while (*cadena)
 	{
-		if (cadena[i] == '%' )
-		{
-			i++;
-			
-		}
-		else
-		{
-			j += write(1, &cadena[i], 1);
-			i++;
-		}
+		if(*cadena == '%')
+			{
+				 cadena++;
+				 ft_format(va, (char *)cadena, &counter);
+			}
+			else
+				ft_putchar_pf(*cadena, &counter);
+			cadena++;
 	}
-	va_end(args);
-	return(j); //vuelva al string
-
+	va_end(va);
+	return(counter);
+	
 }
