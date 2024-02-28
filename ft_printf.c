@@ -6,42 +6,37 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:59:15 by dfontech          #+#    #+#             */
-/*   Updated: 2024/02/22 18:39:55 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:32:36 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Los especificadores de conversión admitidos incluyen: //
 #include "ft_printf.h"
 
-int	ft_format(va_list va, const char *cadena) //ft_format Puede ser estática?- Según 42.nauman.cc
+void ft_format(va_list va, const char *s, int index, int *counter)
 {
-	int len;
-	
-	len = 0;
-	if( *cadena == 'c')
-		len = ft_putchar(va_arg(va, int));
-	else if (*cadena == 's')
-		len = ft_putstr(va_arg(va, char *));
-	else if (*cadena == 'p')  // %p puntero es una variable que almacena la dirección de memoria de otra variable
-							  // una variable de puntero apunts a un tipo de dato (como int)	
-		len = ft_putptr(va_arg(va, void *));
-	else if (*cadena == 'i' || *cadena == 'd')
-		len = ft_putnbr(va_arg(va, int));
-	else if (*cadena == 'u')
-		len = ft_putuint(va_arg(va, unsigned int));
-	else if (*cadena == 'x' || *cadena == 'X')
+	if (s[index] == 'c')
+		ft_putchar(va_arg(va, int), counter);
+	if (s[index] == 's')
+		ft_putstr(va_arg(va, char *), counter);
+	if (s[index] == 'x' || s[index] == 'X')
 	{
-		if (*cadena == 'x')
-	 		len = ft_puthex(va_arg(va, unsigned int), "0123456789abcdef");
-		else
-			len = ft_puthex(va_arg(va, unsigned int), "0123456789ABCDEF");
+		if (s[index] == 'x')
+			ft_puthex(va_arg(va, unsigned int), counter, "0123456789abcdef");
+		if (s[index] == 'X')
+			ft_puthex(va_arg(va, unsigned int), counter, "0123456789ABCDEF");
 	}
-	else if (*cadena == '%')
-		len = ft_putchar(*cadena);
-	return (len);
+	if (s[index] == 'd' || s[index] == 'i')
+		ft_putnbr(va_arg(va, int), counter);
+	if (s[index] == 'u')
+		ft_putunsignednbr(va_arg(va, unsigned int), counter);
+	if (s[index] == '%')
+		ft_putchar('%', counter);
+	if (s[index] == 'p')
+	{
+		ft_putstr("0x", counter);
+		ft_puthex(va_arg(va, unsigned long long), counter, "0123456789abcdef");
+	}
 }
-
-// La función ft_printf itera a través de los caracteres en la cadena de formato de entrada (str). Cuando se encuentra un carácter %, verifica el carácter que sigue a % en busca de un especificador de conversión válido. //
 
 int	ft_printf(const char *cadena, ...)
 { // donde: FORMATO es una cadena qque contiene un texto que se escribir´en la salid estándar.  ARGUMENTOS ADICIONALES (tres punts se llaman elipses) que indica el número variable de argumentos dependiendo del formato de la cadena//
@@ -56,13 +51,13 @@ int	ft_printf(const char *cadena, ...)
 		return (0);
 	while (cadena[i])
 	{
-		if(cadena[i] == '%')
+		if (cadena[i] == '%')
 		{
-			i++;
-			len += ft_format(va, &cadena[i]); //& es un operador de referencia, se utiliza para almacenar la dirección de memoria de la variable y la asigna al puntero
+			i ++;
+			ft_format(va, cadena, i,  &len);
 		}
 		else
-			len += ft_putchar(cadena[i]); // imprimir el caracter recibido e incrementar el valor apuntaddo por counter para mostrar el número toal de caracteres impresos
+			ft_putchar(cadena[i], &len); // imprimir el caracter recibido e incrementar el valor apuntaddo por counter para mostrar el número toal de caracteres impresos
 		i++;
 	}
 	va_end(va); //para limpiar la lista de caracteres
