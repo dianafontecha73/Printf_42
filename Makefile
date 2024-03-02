@@ -24,8 +24,6 @@ SOURCES =	ft_putchar.c\
 			ft_putnbr.c\
 			ft_putunsignednbr.c\
 			ft_printf.c\
-			#ft_puthexmax\
-			ft_putptr.c\#
 
 
 OBJS = $(SOURCES:.c=.o)
