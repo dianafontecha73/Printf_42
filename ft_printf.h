@@ -6,7 +6,7 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:03:20 by dfontech          #+#    #+#             */
-/*   Updated: 2024/02/28 19:36:57 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/03/04 19:18:08 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # include <stdlib.h> //malloc, free
 # include <stdio.h>
 
-int	ft_printf(const char *format, ...);
-void ft_putchar(char c, int *counter);
-void ft_putstr(const char *s, int *counter);
+int		ft_printf(const char *format, ...);
+void	ft_putchar(char c, int *counter);
+void	ft_putstr(const char *s, int *counter);
 void	ft_puthex(unsigned long long num, int *counter, char *base);
 void	ft_putnbr(int n, int *counter);
-void ft_putunsignednbr(int num, int *counter);
+void	ft_putunsignednbr(unsigned int num, int *counter);
 
 #endif

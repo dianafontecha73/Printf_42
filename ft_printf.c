@@ -6,13 +6,13 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:59:15 by dfontech          #+#    #+#             */
-/*   Updated: 2024/02/28 19:32:36 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:53:09 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_format(va_list va, const char *s, int index, int *counter)
+void	ft_format(va_list va, const char *s, int index, int *counter)
 {
 	if (s[index] == 'c')
 		ft_putchar(va_arg(va, int), counter);
@@ -39,27 +39,28 @@ void ft_format(va_list va, const char *s, int index, int *counter)
 }
 
 int	ft_printf(const char *cadena, ...)
-{ // donde: FORMATO es una cadena qque contiene un texto que se escribir´en la salid estándar.  ARGUMENTOS ADICIONALES (tres punts se llaman elipses) que indica el número variable de argumentos dependiendo del formato de la cadena//
-	va_list va; // lista de argumentos variables.
-	int	i;
-	int len; //para contar el número de caracteres impresos, función principal de printf
-	
+
+{
+	va_list	va;
+	int		i;
+	int		len;
+
 	i = 0;
 	len = 0;
-	va_start(va, cadena); // para inicializar con la lista de argumentos
-	if(!cadena)
+	va_start(va, cadena);
+	if (!cadena)
 		return (0);
 	while (cadena[i])
 	{
 		if (cadena[i] == '%')
 		{
-			i ++;
-			ft_format(va, cadena, i,  &len);
+			i++;
+			ft_format(va, cadena, i, &len);
 		}
 		else
-			ft_putchar(cadena[i], &len); // imprimir el caracter recibido e incrementar el valor apuntaddo por counter para mostrar el número toal de caracteres impresos
+			ft_putchar(cadena[i], &len);
 		i++;
 	}
-	va_end(va); //para limpiar la lista de caracteres
-	return(len); // retorna número total de caracteres	
+	va_end(va);
+	return (len);
 }

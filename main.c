@@ -6,7 +6,7 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:11:40 by dfontech          #+#    #+#             */
-/*   Updated: 2024/02/28 19:44:41 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:47:26 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,28 @@ int main (void)
 	printf("Hexadecimal en mayúscula %X\n", 1478);
 	printf("%%\n");
 	printf("Ahora un unsigned %u\n", -12345); */
+
 	
 	counter += printf("Esta letra es: %c", c);
-	// ft_printf("\nLo que mide printf es: %i", 40); //Corregir
+	printf("\nLo que mide printf es: %i", 40); //Corregir
 	counter += printf("\nAhora la cadena: %s\n", cadena);
 	counter += printf("%s\n", "Soy 42");
-	// ft_printf("El Hexadecimal es: %d\n %x\n", 1234, 5678);
+	printf("El Hexadecimal es: %d\n %x\n", 1234, 5678);
 	counter += printf("Hexadecimal en mayúscula %X\n", 1478);
-	counter += printf("%%\n");
-	// ft_printf("Ahora un unsigned %u\n", -1); //Corregir
-	printf("%d", counter);
+	printf("Ahora un unsigned %u\n", -1); //Corregir
+	
+	printf("\n");
+	ft_printf("\n");
+
+
+	counter += ft_printf("Esta letra es: %c", c);
+	ft_printf("\nLo que mide printf es: %i", 40); //Corregir
+	counter += ft_printf("\nAhora la cadena: %s\n", cadena);
+	counter += ft_printf("%s\n", "Soy 42");
+	ft_printf("El Hexadecimal es: %d\n %x\n", 1234, 5678);
+	counter += ft_printf("Hexadecimal en mayúscula %X\n", 1478);
+	ft_printf("Ahora un unsigned %u\n", -1); //Corregir
+
 	return (0);
 
 }

@@ -6,7 +6,7 @@
 #    By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 16:00:08 by dfontech          #+#    #+#              #
-#    Updated: 2024/02/28 19:36:28 by dfontech         ###   ########.fr        #
+#    Updated: 2024/03/04 18:33:48 by dfontech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,6 @@ SOURCES =	ft_putchar.c\
 			ft_putnbr.c\
 			ft_putunsignednbr.c\
 			ft_printf.c\
-			#ft_puthexmax\
-			ft_putptr.c\#
 
 
 OBJS = $(SOURCES:.c=.o)
@@ -39,7 +37,7 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) &(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
