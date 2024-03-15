@@ -6,7 +6,7 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:21:37 by dfontech          #+#    #+#             */
-/*   Updated: 2024/03/04 19:04:30 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:07:52 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,3 @@ void	ft_putstr(const char *s, int *counter)
 		i++;
 	}
 }
-/*
-int main(void)
-{
-	int i;
-	int counter;
-	
-	i= ft_putstr("HOLA", &counter);
-	return (0);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: dfontech <dfontech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:12:04 by dfontech          #+#    #+#             */
-/*   Updated: 2024/02/28 19:12:15 by dfontech         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:06:27 by dfontech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,3 @@ void	ft_puthex(unsigned long long nbr, int *count, char *base)
 		ft_putchar (storage[i], count);
 	}
 }
-
-/*int main ()
-{
-	unsigned int num = 7000;
-	int n = ft_puthex(num);
-	printf("%d\n", n);
-	printf("%x\n", num);
-	return(0);
-}*/
